@@ -36,7 +36,6 @@ let cargarPrecipitacion = () => {
 
 }
 
-cargarPrecipitacion()
 
 let cargarFechaActual = () => {
 
@@ -51,5 +50,55 @@ let cargarFechaActual = () => {
 }
 
 
+let cargarOpenMeteo = () => {
 
-cargarFechaActual()
+    //URL que responde con la respuesta a cargar
+    let URL = 'https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&hourly=temperature_2m&timezone=auto'; 
+  
+    fetch( URL )
+    .then(responseText => responseText.json())
+    .then(responseJSON => {
+      
+    //Respuesta en formato JSON
+
+    //Referencia al elemento con el identificador plot
+    let plotRef = document.getElementById('plot1');
+
+    //Etiquetas del gráfico
+    let labels = responseJSON.hourly.time;
+
+    //Etiquetas de los datos
+    let data = responseJSON.hourly.temperature_2m;
+
+    //Objeto de configuración del gráfico
+    let config = {
+      type: 'line',
+      data: {
+        labels: labels, 
+        datasets: [
+          {
+            label: 'Temperature [2m]',
+            data: data, 
+          }
+        ]
+      }
+    };
+
+    //Objeto con la instanciación del gráfico
+    let chart1  = new Chart(plotRef, config);
+
+  })
+    .catch(console.error); 
+  }
+
+
+  cargarPrecipitacion()
+  cargarFechaActual()
+  cargarOpenMeteo()
+
+  
+  
+
+ 
+
+
