@@ -1,38 +1,85 @@
 import {tiempoArr, precipitacionArr, uvArr, temperaturaArr} from './static_data.js';
 let fechaActual = () => new Date().toISOString().slice(0,10);
+//let fechaActualISO = () => new Date().toISOString().slice(0,13) + ":00";
+
 let cargarPrecipitacion = () => {
 
     //Obtenga la fecha actual
     let actual = fechaActual();
 
     //Defina un arreglo temporal vacío
-    let datos = []
+    let datos = [];
+    let datosUV = [];
+    let datosTemp = [];
+
 
     //Itere en el arreglo tiempoArr para filtrar los valores de precipitacionArr que sean igual con la fecha actual
     for (let index = 0; index < tiempoArr.length; index++) {
         const tiempo = tiempoArr[index];
         const precipitacion = precipitacionArr[index]
+        const uv = uvArr[index];
+        const temperatura = temperaturaArr[index]
+
 
         if(tiempo.includes(actual)) {
-        datos.push(precipitacion)
+          datos.push(precipitacion);
+          datosUV.push(uv);
+          datosTemp.push(temperatura);
         }
+
     }
 
     //Con los valores filtrados, obtenga los valores máximo, promedio y mínimo
-    let max = Math.max(...datos)
-    let min = Math.min(...datos)
+    let max = Math.max(...datos)   ;
+    let min = Math.min(...datos)   ;
     let sum = datos.reduce((a, b) => a + b, 0);
     let prom = (sum / datos.length) || 0;
 
+    //Valores para la UV
+    let maxUV = Math.max(...datosUV);
+    let minUV = Math.min(...datosUV);
+    let sumUV = datosUV.reduce((a, b) => a + b, 0);
+    let promUV = (sumUV / datosUV.length) || 0; 
+
+    //Valores para la temperatura
+    let maxTemp = Math.max(...datosUV);
+    let minTemp = Math.min(...datosUV);
+    let sumTemp = datosUV.reduce((a, b) => a + b, 0);
+    let promTemp = (sumUV / datosUV.length) || 0; 
+
     //Obtenga la referencia a los elementos HTML con id precipitacionMinValue, precipitacionPromValue y precipitacionMaxValue
-    let precipitacionMinValue = document.getElementById("precipitacionMinValue")
-    let precipitacionPromValue = document.getElementById("precipitacionPromValue")
-    let precipitacionMaxValue = document.getElementById("precipitacionMaxValue")
+    let precipitacionMinValue = document.getElementById("precipitacionMinValue")    ;
+    let precipitacionPromValue = document.getElementById("precipitacionPromValue")  ;
+    let precipitacionMaxValue = document.getElementById("precipitacionMaxValue")    ;
+
+    //Valores para UV
+
+    let uvMinValue = document.getElementById("uvMinValue");
+    let uvPromValue = document.getElementById("uvPromValue");
+    let uvMaxValue = document.getElementById("uvMaxValue");
+
+    //Valores para temperatura
+
+    let temperaturaMinValue = document.getElementById("temperaturaMinValue");
+    let temperaturaMaxValue = document.getElementById("temperaturaMaxValue");
+    let temperaturaPromValue = document.getElementById("temperaturaPromValue");
+
 
     //Actualice los elementos HTML con los valores correspondientes
-    precipitacionMinValue.textContent = `Min ${min} [mm]`
-    precipitacionPromValue.textContent = `Prom ${ Math.round(prom * 100) / 100 } [mm]`
-    precipitacionMaxValue.textContent = `Max ${max} [mm]`
+    precipitacionMinValue.textContent = `Min ${min} mm`;
+    precipitacionPromValue.textContent = `Prom ${ Math.round(prom * 100) / 100 } mm`   ;
+    precipitacionMaxValue.textContent = `Max ${max} mm`;
+
+    //Valores para UV 
+    uvMinValue.textContent = `Min ${minUV} UV `; 
+    uvPromValue.textContent = `Prom ${Math.round(promUV * 100) / 100} UV`;
+    uvMaxValue.textContent = `Max ${maxUV} UV`;
+
+    //Valores para UV 
+    temperaturaMinValue.textContent = `Min ${minUV} °C `; 
+    temperaturaPromValue.textContent = `Prom ${Math.round(promUV * 100) / 100} °C`;
+    temperaturaMaxValue.textContent = `Max ${maxUV} °C`;
+
 
 }
 
@@ -238,7 +285,16 @@ let cargarOpenMeteo = () => {
   
 
 
-
+  var lastScrollTop = 0;
+  window.addEventListener("scroll", function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+          document.querySelector('.navbar').classList.add('hide');
+      } else {
+          document.querySelector('.navbar').classList.remove('hide');
+      }
+      lastScrollTop = scrollTop;
+  });
 
 
   loadForecastByCity()

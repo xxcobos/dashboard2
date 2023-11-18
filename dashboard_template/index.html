@@ -7,6 +7,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <title>Dashboard</title>
 
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
         <!-- Font Awesome -->
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -20,15 +21,33 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
             rel="stylesheet" />
 
+        <link rel="stylesheet" type="text/css" href="style.css">
        
+        <style>
+            body {
+                font-family: 'Nunito', 'Roboto', sans-serif;
+            }
+        </style>
+
+
+<style>
+    #forecastbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    #forecastbody tr:nth-child(odd) {
+        background-color: #cccccc;
+    }
+</style>
+
 
     </head>
     <body>
 
-        <header>
+        <header class = "barraArriba">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
+                    <a href='index.html' ><img src='https://i.postimg.cc/94FYtKZh/my-wea-removebg-preview.png' border='0' alt='my-wea-removebg-preview' width="150"/></a>
                     <button
                         class="navbar-toggler"
                         type="button"
@@ -53,23 +72,24 @@
 
                         </ul>
                     </div>
-                </div>
-            </nav>
+                    <a href='index.html'><img src='https://i.postimg.cc/VJTnPpnm/060e993d-c03d-47ff-9ecc-90489c8ee786.jpg' border='2' alt='060e993d-c03d-47ff-9ecc-90489c8ee786' width="75"/></a>
+                    </div>
+                </nav>
             <!-- Navbar -->
         </header>
 
         <!-- Indicadores -->
-        <section class="p-4 text-right bg-light">
-            <h4 id="indicadores" class="mb-3">
+        <section class="p-4 text-right bg-light" id="secciones">
+            <h4 id="indicadores" class="mb-31">
                 Indicadores 
             </h4>
-            <h6 class="mb-3">YYYY-MM-DD</h6>
+            <h6 class="mb-3" id="Fecha">YYYY-MM-DD</h6>
             <div class="container">
                 <div class="row row-cols-1 row-cols-md-3 g-3 mt-2">
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Precipitación</h5>
+                                <h5 class="card-title">Precipitación ☂️</h5>
                                 <p class="card-text">
                                     <ul class="list-group list-group-light">
                                         <li id="precipitacionMinValue" class="list-group-item">Min 0.0 [mm]</li>
@@ -83,7 +103,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Uv</h5>
+                                <h5 class="card-title">UV ☀️</h5>
                                 <p class="card-text">
                                     <ul class="list-group list-group-light">
                                         <li id="uvMinValue" class="list-group-item">Min 0.0 [--]</li>
@@ -97,7 +117,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Temperatura</h5>
+                                <h5 class="card-title">Temperatura 🌡️</h5>
                                 <p class="card-text">
                                     <ul class="list-group list-group-light">
                                         <li id="temperaturaMinValue" class="list-group-item">Min 0.0 [°C]</li>
@@ -115,26 +135,30 @@
 
          
         <!-- Gráficos -->
-        <section class="p-4 text-right bg-light">
-            <h4 id="graficos" class="mb-3">
+        <section class="p-4 text-right bg-light" id="grafi">
+            <h4 id="graficos" class="mb-31">
                 Gráficos
             </h4>
-            <div class="container">
+            <div class="containerA">
+                
                 <div
                     class="row d-flex justify-content-center row-cols-1 row-cols-md-1 g-4 mt-2">
                     <div class="col">
+                        <h6 class="mb-3" id="textoDeCajitas">Temperatura 🔽</h6>
                         <canvas id="plot1"></canvas>
                     </div>
                     <div class="col">
+                        <h6 class="mb-3" id="textoDeCajitas">Precipitación 🔽    Punto de rocío 🔻</h6>
                         <canvas id="plot2"></canvas>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Gráficos -->
+
         <!-- Datos -->
         <section class="p-4 text-right bg-light">
-            <h4 id="datos" class="mb-3">
+            <h4 id="datos" class="mb-31">
                 Datos
             </h4>
             <div class="container">
@@ -153,24 +177,23 @@
                     </div>
 
                 </div>
-                <div class="row row-cols-1 row-cols-md-1 g-3 mt-2">
-                    <div class="col">
-
-                        <div class="card">
-                            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-1 g-3 mt-2" >
+                    <div class="col" >
+                        <div class="card" >
+                            <div class="card-body" >
                                 <h5 class="card-title">Pronóstico del tiempo
                                     para 5 días con datos cada 3 horas por
                                     ciudad</h5>
                                 <table id="forecast"
                                     class="table align-middle mb-0 bg-white">
                                     <thead class="bg-light">
-                                        <tr>
+                                        <tr id="inicio">
                                             <th>Hora</th>
-                                            <th>Humedad [%]</th>
-                                            <th>Velocidad del viento [m/s]</th>
-                                            <th>Precipitación [--]</th>
-                                            <th>Presión [hPa]</th>
-                                            <th>Nubosidad [%]</th>
+                                            <th>Humedad en %</th>
+                                            <th>Velocidad del viento en m/s</th>
+                                            <th>Precipitación en mm</th>
+                                            <th>Presión en hPa</th>
+                                            <th>Estado de las nubes</th>
                                         </tr>
                                     </thead>
                                     <tbody id="forecastbody">

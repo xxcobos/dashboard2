@@ -1,0 +1,98 @@
+.barraArriba .navbar {
+    background-color: #07263A
+    ;
+
+}
+
+.barraArriba .navbar .nav-link {
+    color: white;
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    transition: top 0.3s;
+    width: 100%
+    
+}
+
+.navbar.hide {
+    top: -100px;
+}
+
+
+#secciones {
+    position: relative;
+    z-index: -1; /* Coloca la sección detrás de otros contenidos */
+}
+
+#inicio {
+    background-color: #07263A;
+    color: white;
+}
+
+
+#forecast{
+    position: relative;
+    z-index: 0; /* Coloca la sección detrás de otros contenidos */
+}
+
+body {
+    background-color: #C7D2C4;
+    padding-top: 80px;
+}
+
+.card {
+    background-color: white;
+}
+
+
+#grafi .col{
+    width: 49%;
+    border: 2px solid #B0B0B0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin: 5px;
+    align-content: center;
+    align-items: center;
+}
+
+#Fecha{
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    padding: 20px;
+    
+    
+}
+
+#textoDeCajitas{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.card-title{
+    border: 3px solid #B0B0B0;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #E0E0E0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+
+.mb-31  {
+    font-size: 2em; /* Hace el texto más grande */
+    color: #07263A; /* Color del texto */
+    background-color: #ebebbc; /* Color de fondo */
+    border: 3px solid #B0B0B0; /* Borde alrededor del título */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra alrededor del título */
+    padding: 20px; /* Espacio alrededor del texto */
+    text-align: center; /* Centra el texto */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+
